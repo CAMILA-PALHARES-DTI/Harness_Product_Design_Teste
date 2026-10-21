@@ -1,0 +1,26 @@
+# Apresentações geradas (.pptx) — binários grandes, reproduzíveis a partir do plano; podem exceder o limite de 100 MB do GitHub.
+# Os templates em documentos/apresentacoes/templates/ são versionados (mantenha-os leves ou use Git LFS).
+documentos/apresentacoes/resultados/*.pptx
+
+# Arquivos temporários de skills (planos e termos intermediários)
+documentos/gerados/.plano-temp-*
+documentos/gerados/.novos-termos.md
+
+# Impressão digital de conhecimento/ usada pelo hook que regenera o INDICE-GERAL (estado local, por máquina)
+.claude/.indice-geral.fingerprint
+
+# Rascunhos de protótipo (create-prototype) — o arquivo final só nasce após aprovação do PD
+documentos/gerados/.rascunho-*
+
+# Repositórios de código clonados para consulta (não fazem parte da base de conhecimento)
+# O README.md da pasta é versionado para ela existir em todo clone; todo o resto é ignorado.
+Repositório/*
+!Repositório/README.md
+
+# Dependências Node.js dos sensores computacionais (ver scripts/package.json)
+# -- inclui o Chromium headless baixado pelo @mermaid-js/mermaid-cli (~700MB)
+scripts/node_modules/
+
+
+# Configuração pessoal do Claude Code (permissões e servidores MCP desativados nesta máquina)
+.claude/settings.local.json

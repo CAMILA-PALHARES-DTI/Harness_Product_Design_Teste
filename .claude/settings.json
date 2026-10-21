@@ -1,0 +1,101 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/skills/plan-research/validar-output.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/skills/create-artifacts/validar-output.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/skills/process-research-data/validar-output.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/skills/interpret/validar-output.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/skills/prioritize-deliverables/validar-output.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/skills/create-roadmap/validar-output.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/skills/flow-mapping/validar-output.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/skills/screen-planner/validar-output.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/skills/create-prototype/validar-output.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/atualizar-readme.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/atualizar-indice-geral.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/atualizar-readme.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/atualizar-indice-geral.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/checar-indice-apos-delecao.sh"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/atualizar-indice-geral.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/atualizar-indice-geral.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/atualizar-indice-geral.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,129 @@
+# rotulos.txt — dicionário de rótulos que os sensores leem no TEXTO dos arquivos gerados.
+#
+# Por que existe: o CLAUDE.md manda escrever o conteúdo dos arquivos no idioma configurado (português ou
+# inglês). Títulos de seção, rótulos de campo, nomes de coluna e alguns valores de frontmatter mudam de
+# texto com o idioma, mas os sensores (validar-output.sh de cada skill e scripts/*.ps1) precisam reconhecê-los
+# em qualquer idioma. Em vez de cada sensor guardar o seu próprio texto fixo, todos leem este arquivo.
+#
+# Formato (uma linha por conceito):   chave | português (Brasil) | inglês
+#   - Dentro de uma coluna, variantes extras do mesmo idioma são separadas por ';'.
+#   - Chaves repetidas SOMAM variantes (usado em listas, ex: interpretacao).
+#   - Linhas começando com '#' e linhas em branco são ignoradas. Um rótulo não pode conter '|'.
+#   - Os sensores comparam sem diferenciar maiúsculas de minúsculas e aceitam as variantes de TODAS as colunas
+#     (um arquivo em inglês com um título em português ainda passa) — a coluna certa para escrever, porém, é a
+#     do idioma configurado no CLAUDE.md: as skills devem usar o rótulo daquela coluna, sem inventar variações.
+#   - Para acrescentar um idioma, acrescente uma coluna em TODAS as linhas (os sensores já leem qualquer número
+#     de colunas) e peça às skills para usá-la.
+#
+# NÃO entram aqui (permanecem iguais em qualquer idioma, como o CLAUDE.md define): nomes de arquivo e pasta,
+# chaves de frontmatter e de blocos YAML, valores de enum de YAML (confirmado, hipotese, pronta_para_dev...),
+# IDs (DORxxx, DEPxxx, RISxxx, Dxxx, FLXxxx, OKR-N, SCR-NN, US-N.M, SPEC-N) e os marcadores [a confirmar] e
+# [BLOQUEADO até DEPxxx].
+#
+# Chaves: secao.* = título de seção "## ..." · campo.* = rótulo em linha "**Rótulo:**" · coluna.* = cabeçalho de
+# tabela · valor.* = valor de frontmatter/status · art.* = seções dos artefatos de pesquisa · bdd.* = rótulos do
+# critério de aceite · marcador.* = marcador em texto · interpretacao = termos de linguagem interpretativa.
+
+# --- Seções (títulos "## ...") ---
+secao.notas_de_design|Notas de Design|Design Notes
+secao.resumo_executivo|Resumo Executivo|Executive Summary
+secao.achados|Achados|Findings
+secao.recomendacoes|Recomendações|Recommendations
+secao.lacunas_e_limitacoes|Lacunas e Limitações|Gaps and Limitations
+secao.cenario|Cenário|Scenario
+secao.premissas_e_restricoes|Premissas e Restrições|Assumptions and Constraints
+secao.sequencia_de_passos|Sequência de Passos|Sequence of Steps
+secao.riscos_ao_cronograma|Riscos ao Cronograma|Schedule Risks
+secao.contexto|Contexto|Context
+secao.framework_e_criterios|Framework e Critérios|Framework and Criteria
+secao.ranking|Ranking|Ranking
+secao.temas_identificados|Temas identificados|Identified themes
+secao.casos_isolados|Casos isolados|Isolated cases
+secao.divergencias_registradas|Divergências registradas|Recorded divergences
+secao.lacunas_do_material|Lacunas do material|Material gaps
+secao.notas_qualidade_material|Notas sobre qualidade do material|Notes on material quality
+secao.mapa_de_navegacao|Mapa de navegação|Navigation map
+secao.telas_sem_prototipo|Telas sem protótipo;Telas sem prototipo|Screens without prototype
+
+# --- Rótulos em linha ---
+campo.fonte|Fonte|Source
+campo.quando_avancar|Quando avançar|When to move on
+campo.leva_proxima_etapa|O que leva para a próxima etapa|What leads to the next step
+campo.definicao|Definição;Definicao|Definition
+campo.categoria|Categoria|Category
+campo.sinonimos|Sinônimos ou variações;Sinonimos ou variacoes|Synonyms or variations;Synonyms
+
+# --- Cabeçalhos de tabela dos guides (índice) ---
+coluna.titulo|Título|Title
+coluna.objetivo|Objetivo|Goal;Objective
+coluna.status|Status|Status
+
+# --- Valores de frontmatter / status que o sensor compara ---
+valor.status_resolvida|Resolvida|Resolved
+valor.origem_pesquisa|pesquisa|research
+valor.origem_manual|manual|manual
+valor.cenario_misto|misto|mixed
+valor.tipo_pesquisa_generativa|Generativa|Generative
+valor.tipo_pesquisa_avaliativa|Avaliativa|Evaluative
+valor.tipo_pesquisa_discovery|Discovery Contínuo|Continuous Discovery
+valor.framework_valor_esforco|Valor x Esforço|Value vs Effort
+valor.escopo_completo|completo|full
+valor.escopo_parcial|parcial|partial
+
+# --- Marcadores em texto ---
+marcador.dado_necessario|[dado necessário]|[data needed]
+
+# --- Critério de aceite em BDD (create-spec / validar-bdd.ps1) ---
+bdd.criterio_aceite|Critério de aceite;Criterio de aceite|Acceptance criteria
+bdd.cenario|Cenário;Cenario|Scenario
+bdd.dado|Dado|Given
+bdd.quando|Quando|When
+bdd.entao|Então;Entao|Then
+
+# --- Artefatos de pesquisa (create-artifacts): roteiro de entrevista ---
+art.objetivo_sessao|Objetivo da sessão|Session objective
+art.perfil_participante|Perfil do participante|Participant profile
+art.aquecimento|Aquecimento|Warm-up
+art.bloco_principal|Bloco principal|Main block
+art.encerramento|Encerramento|Closing
+# screener
+art.objetivo_recrutamento|Objetivo do recrutamento|Recruitment objective
+art.perfil_alvo|Perfil-alvo|Target profile
+art.criterios_inclusao|Critérios de inclusão|Inclusion criteria
+art.criterios_exclusao|Critérios de exclusão|Exclusion criteria
+art.perguntas_triagem|Perguntas de triagem|Screening questions
+# TCLE
+art.identificacao_pesquisa|Identificação da pesquisa|Research identification
+art.objetivo_pesquisa|Objetivo da pesquisa|Research objective
+art.o_que_sera_pedido|O que será pedido|What will be asked
+art.uso_informacoes|Uso das informações|Use of information
+art.direito_recusa|Direito de recusa|Right to refuse
+art.declaracao_consentimento|Declaração de consentimento|Consent statement
+# guia de facilitação (teste de usabilidade)
+art.objetivo_teste|Objetivo do teste|Test objective
+art.setup_tecnico|Setup técnico|Technical setup
+art.cenarios_tarefas|Cenários e tarefas|Scenarios and tasks
+art.formulario_observacao|Formulário de observação|Observation form
+# survey
+art.objetivo|Objetivo|Objective
+art.instrucoes_respondente|Instruções ao respondente|Instructions to the respondent
+art.bloco_1|Bloco 1|Block 1
+art.espaco_aberto|Espaço aberto|Open space
+# protocolo de observação
+art.objetivo_observacao|Objetivo da observação|Observation objective
+art.o_que_observar|O que observar|What to observe
+art.formulario_registro|Formulário de registro|Recording form
+art.guia_anotacoes|Guia de anotações|Note-taking guide
+
+# --- Linguagem de interpretação (process-research-data deve registrar, não interpretar) ---
+interpretacao|isso indica|this indicates
+interpretacao|isso sugere|this suggests
+interpretacao|isso mostra|this shows
+interpretacao|isso demonstra|this demonstrates
+interpretacao|é possível inferir|it is possible to infer;one can infer
+interpretacao|podemos concluir|we can conclude
+interpretacao|padrão identificado|identified pattern
+interpretacao|o que demonstra|which demonstrates
+interpretacao|o que significa|which means
+interpretacao|portanto, o participante|therefore, the participant
+interpretacao|logo, o participante|thus, the participant

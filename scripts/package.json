@@ -1,0 +1,8 @@
+{
+  "name": "harness-scripts-sensores",
+  "private": true,
+  "description": "Dependências dos sensores computacionais que precisam de Node.js (hoje: validar-mermaid.ps1, via @mermaid-js/mermaid-cli). Rode 'npm install' dentro desta pasta uma vez -- a primeira instalação baixa um Chromium headless via Puppeteer (~700MB) para renderizar/validar os diagramas.",
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.0.0"
+  }
+}
