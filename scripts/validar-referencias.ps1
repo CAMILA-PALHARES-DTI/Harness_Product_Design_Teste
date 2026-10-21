@@ -37,7 +37,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-. "$PSScriptRoot\_lib-guides.ps1"
+. (Join-Path $PSScriptRoot '_lib-guides.ps1')
 
 $Root = Resolve-Raiz -Root $Root
 $canonico = Get-CanonicoIds -Root $Root

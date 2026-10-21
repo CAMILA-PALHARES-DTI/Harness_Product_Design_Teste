@@ -1,0 +1,26 @@
+# Fim de linha: o repositório guarda LF; cada sistema converte só o que precisa.
+# Scripts executados por bash/PowerShell/Node ficam SEMPRE em LF, inclusive no Windows: um .sh com CRLF
+# falha com "\r: command not found" no macOS, no Linux e no Git Bash.
+* text=auto
+
+*.sh   text eol=lf
+*.py   text eol=lf
+*.mjs  text eol=lf
+*.js   text eol=lf
+*.ps1  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+.gitignore     text eol=lf
+.gitattributes text eol=lf
+
+# Binários (apresentações, imagens, documentos): nunca converter
+*.pptx binary
+*.potx binary
+*.docx binary
+*.xlsx binary
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary

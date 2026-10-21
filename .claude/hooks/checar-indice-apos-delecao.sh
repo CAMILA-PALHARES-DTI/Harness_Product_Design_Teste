@@ -6,6 +6,8 @@
 # não roda em todo comando Bash. Ver scripts/validar-indice.ps1.
 # Triggered as PostToolUse hook on Bash operations.
 
+source "$(dirname "${BASH_SOURCE[0]}")/_ps.sh"  # run_ps: powershell (Windows) ou pwsh (macOS/Linux)
+
 INPUT=$(cat)
 
 CMD=$(echo "$INPUT" | python3 -c "
@@ -24,4 +26,4 @@ echo "$CMD" | grep -qiE '(^|[^a-zA-Z0-9_])(rm|del|erase|remove-item|git rm|mv|mo
 echo "$CMD" | grep -q 'conhecimento' || exit 0
 
 echo "checar-indice-apos-delecao: comando de remoção/movimentação detectado mencionando conhecimento/ -- checando índice..."
-powershell -NoProfile -File scripts/validar-indice.ps1 -Todos
+run_ps -File scripts/validar-indice.ps1 -Todos

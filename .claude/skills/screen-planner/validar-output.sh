@@ -6,6 +6,7 @@
 # - IDs SCR-NN consistentes (delegado a scripts/validar-sequencia-id.ps1 -Telas)
 
 source "$(dirname "${BASH_SOURCE[0]}")/../../hooks/_rotulos.sh"  # rótulos por idioma (scripts/rotulos.txt)
+source "$(dirname "${BASH_SOURCE[0]}")/../../hooks/_ps.sh"       # run_ps: powershell (Windows) ou pwsh (macOS/Linux)
 
 INPUT=$(cat)
 
@@ -72,8 +73,8 @@ fi
 tem_secao secao.mapa_de_navegacao "$CONTENT" || ERRORS+=("Seção ausente: ## $(rotulo_msg secao.mapa_de_navegacao)")
 
 # 4. IDs SCR-NN (sensor computacional)
-if command -v powershell >/dev/null 2>&1; then
-  IDS_OUT=$(powershell -NoProfile -File scripts/validar-sequencia-id.ps1 -Telas -Arquivo "$FILE_PATH" 2>&1)
+if ps_disponivel; then
+  IDS_OUT=$(run_ps -File scripts/validar-sequencia-id.ps1 -Telas -Arquivo "$FILE_PATH" 2>&1)
   if [[ $? -ne 0 ]]; then
     while IFS= read -r l; do [[ "$l" == "  - "* ]] && ERRORS+=("IDs de tela: ${l#  - }"); done <<< "$IDS_OUT"
   fi
@@ -81,7 +82,7 @@ fi
 
 N_CONF=$(grep -o '\[a confirmar\]' <<< "$CONTENT" | wc -l | tr -d ' ')
 WARNINGS+=("$N_CONF pontos [a confirmar] no inventário — confirme que foram listados ao PD.")
-WARNINGS+=("Rode também: powershell -File scripts/validar-links-frontmatter.ps1 -Arquivo $FILE_PATH")
+WARNINGS+=("Rode também (pwsh no macOS/Linux, powershell no Windows): <pwsh|powershell> -File scripts/validar-links-frontmatter.ps1 -Arquivo $FILE_PATH")
 
 # ── RELATÓRIO ─────────────────────────────────────────────────────────────────
 if [[ ${#ERRORS[@]} -gt 0 ]]; then

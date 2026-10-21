@@ -76,7 +76,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-. "$PSScriptRoot\_lib-guides.ps1"   # Get-RotuloRegex (scripts/rotulos.txt)
+. (Join-Path $PSScriptRoot '_lib-guides.ps1')   # Get-RotuloRegex (scripts/rotulos.txt)
 $Root = (Resolve-Path -Path $Root).ProviderPath
 $caminhoGlossario = Join-Path $Root 'conhecimento/produto/glossario.md'
 

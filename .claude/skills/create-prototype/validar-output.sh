@@ -49,7 +49,7 @@ fi
 
 # 2. Estrutura mínima
 grep -qi '<!DOCTYPE html>' <<< "$CONTENT" || ERRORS+=("Falta <!DOCTYPE html>")
-grep -qiE '<html[^>]*\blang="[^"]+"' <<< "$CONTENT" || ERRORS+=("Falta o atributo lang em <html> (idioma do protótipo)")
+grep -qiE '<html[^>]*[[:space:]]lang="[^"]+"' <<< "$CONTENT" || ERRORS+=("Falta o atributo lang em <html> (idioma do protótipo)")
 grep -qi 'name="viewport"' <<< "$CONTENT" || ERRORS+=("Falta <meta name=\"viewport\">")
 grep -qiE '<title>[^<]+</title>' <<< "$CONTENT" || ERRORS+=("Falta <title> preenchido")
 
@@ -71,7 +71,7 @@ N_CONF=$(grep -o '\[a confirmar\]' <<< "$CONTENT" | wc -l | tr -d ' ')
 N_SUG=$(grep -o '\[sugest' <<< "$CONTENT" | wc -l | tr -d ' ')
 N_A11Y=$(grep -o '\[a11y' <<< "$CONTENT" | wc -l | tr -d ' ')
 WARNINGS+=("$N_CONF [a confirmar], $N_SUG [sugestão], $N_A11Y [a11y] no protótipo — confirme que o relatório do Passo 5 listou todos.")
-WARNINGS+=("Rode também: powershell -File scripts/validar-sequencia-id.ps1 -Telas -Arquivo $FILE_PATH [-Inventario <inventário>]")
+WARNINGS+=("Rode também (pwsh no macOS/Linux, powershell no Windows): <pwsh|powershell> -File scripts/validar-sequencia-id.ps1 -Telas -Arquivo $FILE_PATH [-Inventario <inventário>]")
 
 # ── RELATÓRIO ─────────────────────────────────────────────────────────────────
 if [[ ${#ERRORS[@]} -eq 0 && ${#WARNINGS[@]} -eq 0 ]]; then

@@ -6,7 +6,7 @@
     lugar, para os três sensores nunca divergirem entre si sobre o que é "canônico".
 
     Dot-source este arquivo no início de cada script:
-        . "$PSScriptRoot\_lib-guides.ps1"
+        . (Join-Path $PSScriptRoot '_lib-guides.ps1')
 #>
 
 function Get-Guias {
@@ -30,7 +30,7 @@ function Get-CaminhoRelativo {
     param([string]$CaminhoCompleto, [string]$Base)
     $baseComBarra = $Base
     if (-not $baseComBarra.EndsWith('\') -and -not $baseComBarra.EndsWith('/')) {
-        $baseComBarra += '\'
+        $baseComBarra += [System.IO.Path]::DirectorySeparatorChar   # '' no Windows, '/' no macOS/Linux
     }
     if ($CaminhoCompleto.StartsWith($baseComBarra, [System.StringComparison]::OrdinalIgnoreCase)) {
         return $CaminhoCompleto.Substring($baseComBarra.Length)

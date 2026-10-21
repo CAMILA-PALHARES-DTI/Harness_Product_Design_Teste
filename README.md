@@ -16,6 +16,10 @@ Um harness é um projeto Claude Code configurado com skills, base de conheciment
 - Acesso ao repositório com permissão de leitura e escrita
 - Abrir a pasta raiz deste repositório como projeto no Claude Code
 - [Node.js](https://nodejs.org/) instalado, se for usar o sensor de validação de diagramas Mermaid (`scripts/validar-mermaid.ps1`) ou os sensores do protótipo (`/create-prototype`)
+- **Python 3** e **bash** — os hooks (`.claude/hooks/` e `validar-output.sh` das skills) usam os dois. No macOS o bash e o `git` vêm com o sistema, e o `python3` vem com as Command Line Tools (`xcode-select --install`).
+- **PowerShell** — os sensores em `scripts/*.ps1` rodam em PowerShell. No **Windows** o Windows PowerShell 5.1 (`powershell`) já vem instalado. No **macOS/Linux** instale o PowerShell 7 (`brew install --cask powershell`, que fornece o comando `pwsh`) e, onde este repositório e as skills dizem `powershell -File scripts/...`, use `pwsh -File scripts/...`. Os hooks já escolhem sozinhos entre `powershell` e `pwsh`.
+
+> **macOS/Linux:** o harness foi escrito no Windows. Os sensores `.ps1` e os hooks foram ajustados para caminhos e comandos portáveis, mas só foram executados no Windows — se algum sensor se comportar diferente no seu sistema, avise o time.
 
 ---
 

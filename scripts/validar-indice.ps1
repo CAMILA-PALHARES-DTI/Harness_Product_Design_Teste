@@ -121,7 +121,7 @@ function Test-IndiceDaPasta {
     $pastaRel = Get-CaminhoRelativoLocal -CaminhoCompleto $CaminhoPasta -Base $RootRepo
 
     $itensDisco = @(Get-ChildItem -Path $CaminhoPasta -Force -ErrorAction SilentlyContinue |
-        Where-Object { $_.Name -ne 'index.md' -and $_.Name -notmatch '^\.' })
+        Where-Object { $_.Name -ne 'index.md' -and $_.Name -ne 'INDICE-GERAL.md' -and $_.Name -notmatch '^\.' })   # INDICE-GERAL.md é gerado por gerar-indice-geral.ps1, não é item de índice
 
     if (-not (Test-Path $caminhoIndice)) {
         if ($itensDisco.Count -gt 0) {
@@ -208,7 +208,7 @@ function Remove-LinhasOrfasDoIndice {
 function Get-CaminhoRelativoLocal {
     param([string]$CaminhoCompleto, [string]$Base)
     $baseComBarra = $Base
-    if (-not $baseComBarra.EndsWith('\') -and -not $baseComBarra.EndsWith('/')) { $baseComBarra += '\' }
+    if (-not $baseComBarra.EndsWith('\') -and -not $baseComBarra.EndsWith('/')) { $baseComBarra += [System.IO.Path]::DirectorySeparatorChar }
     if ($CaminhoCompleto.StartsWith($baseComBarra, [System.StringComparison]::OrdinalIgnoreCase)) {
         return ($CaminhoCompleto.Substring($baseComBarra.Length) -replace '\\', '/')
     }

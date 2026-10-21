@@ -73,7 +73,7 @@ $linhas = @(Get-Content -Path $caminho -Encoding UTF8)
 #    nível 2, ou o fim do arquivo.
 # ---------------------------------------------------------------------------
 
-. "$PSScriptRoot\_lib-guides.ps1"   # Get-RotuloRegex: rótulos do BDD em português e inglês (scripts/rotulos.txt)
+. (Join-Path $PSScriptRoot '_lib-guides.ps1')   # Get-RotuloRegex: rótulos do BDD em português e inglês (scripts/rotulos.txt)
 
 $reCenario  = Get-RotuloRegex 'bdd.cenario'
 $reCriterio = Get-RotuloRegex 'bdd.criterio_aceite'

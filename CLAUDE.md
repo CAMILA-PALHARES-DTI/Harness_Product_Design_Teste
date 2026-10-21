@@ -93,6 +93,12 @@ As skills estão em `.claude/skills/[nome-da-skill]/SKILL.md`. Cada arquivo `SKI
 
 ---
 
+## Sistema operacional (Windows, macOS, Linux)
+
+O time usa Windows e macOS. Onde este `CLAUDE.md` e as skills mandam rodar `powershell -File scripts/<sensor>.ps1`, **use `powershell` no Windows e `pwsh` (PowerShell 7) no macOS/Linux** — mesmos argumentos; se o comando não existir, instale o PowerShell 7 em vez de pular o sensor. Os hooks (`.claude/hooks/_ps.sh`) escolhem sozinhos. Ao criar um script ou hook novo: caminhos com `Join-Path`/`[System.IO.Path]` (nunca `\` fixo), nada específico de GNU (`find -printf`, `md5sum`, `sed -i` sem sufixo) nem de Windows, e arquivos `.sh`/`.ps1` sempre em LF (garantido por `.gitattributes`).
+
+---
+
 ## Estrutura do repositório
 
 ```
