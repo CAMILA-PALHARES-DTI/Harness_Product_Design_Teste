@@ -4,7 +4,7 @@ Ambiente de trabalho estruturado para times de produto, design e pesquisa da dti
 
 ---
 
-## O que é um harness
+## O que é um harness?
 
 Um harness é um projeto Claude Code configurado com skills, base de conhecimento e convenções específicas para um domínio de trabalho. Ao abrir este repositório no Claude Code, o assistente passa a operar dentro desse contexto — usando os arquivos de conhecimento como fonte de verdade e as skills como fluxos de trabalho guiados.
 
